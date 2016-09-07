@@ -1,0 +1,14 @@
+stages:
+  - build
+  - cleanup
+before_script:
+  - export COMPOSE_PROJECT_NAME=pipeline${CI_PIPELINE_ID}
+build:
+  stage: build
+  script:
+    - docker-compose build
+cleanup:
+  stage: cleanup
+  script:
+    - docker-compose down -v --remove-orphans
+  when: always
