@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - cleanup
 before_script:
   - export COMPOSE_PROJECT_NAME=pipeline${CI_PIPELINE_ID}
@@ -7,6 +8,10 @@ build:
   stage: build
   script:
     - docker-compose build
+test:
+  stage: test
+  script:
+    - docker-compose run roj
 cleanup:
   stage: cleanup
   script:
