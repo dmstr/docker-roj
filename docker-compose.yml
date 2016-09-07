@@ -1,0 +1,4 @@
+roj:
+  build: .
+  volumes:
+    - ./data/example:/roj
