@@ -1,0 +1,29 @@
+version: "2"
+services:
+  master:
+    restart: always
+    image: consul:v0.6.4
+    ### https://www.consul.io/docs/agent/options.html
+    command: agent -ui -server -bootstrap-expect 1 -client=0.0.0.0 -bind=10.1.1.1 -data-dir=/consul/data
+    network_mode: "host"
+    #privileged: true
+    volumes:
+      - /host-volume/consul/data:/consul/data
+    ports:
+      # consul ports
+      - 8300-8302:8300-8302/tcp
+      - 8300-8302:8300-8302/udp
+      - 8400:8400/tcp
+      - 8500:8500/tcp
+      - 8600:8600/tcp
+      - 8600:8600/udp
+      # required for correct DNS-resolving in container(s); tested in overlay-test stack
+      #- 53:8600
+      #- 53:8600/udp
+
+      # TODO: remove the following VXlan ports
+      # see https://github.com/docker/swarm/issues/2161
+      #- 4789:4789/udp
+      #- 7946:7946/tcp
+      #- 7946:7946/udp
+      # ---
