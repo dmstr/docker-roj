@@ -1,5 +1,11 @@
 ## Machine provisioning
 
+Start by entering the roj management container
+
+```
+docker-compose run roj
+```
+
 ### Discovery
 
 ```
