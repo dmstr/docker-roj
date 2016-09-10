@@ -5,7 +5,7 @@ Nano-sized & portable environment for Docker swarms and stacks
 ## About
 
 Roj is based on native Docker tools to build swarms with `docker-machine` and manage stacks with `docker-compose`. 
-Since all tools are run from a docker container, the created configurations for remain portable.
+Since all tools are run from a docker container, the created configurations (on a host-volume) remain portable.
 
 ## TL;dr
 
