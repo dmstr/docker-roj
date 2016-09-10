@@ -26,7 +26,9 @@ docker-machine create -d generic --generic-ip-address 10.10.10.1 \
     --swarm-master \
     --swarm \
     --engine-label master=1 \
-    ${ROJ_MACHINE_OPTS} \
+    --swarm-discovery consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+    --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+    --engine-opt=cluster-advertise=eth1:2376 \
     ${ROJ_SWARM_NAME}-m1
 ```
 
@@ -42,7 +44,9 @@ eval $(docker-machine env --swarm ${ROJ_SWARM_NAME}-m1)
 docker-machine create -d generic --generic-ip-address 10.10.20.10 \
     --swarm \
     --engine-label app=1 \
-    ${ROJ_MACHINE_OPTS} \
+    --swarm-discovery consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+    --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+    --engine-opt=cluster-advertise=eth1:2376 \
     ${ROJ_SWARM_NAME}-w10
 ```
 
