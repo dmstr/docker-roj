@@ -1,4 +1,3 @@
-
 ## Machine provisioning
 
 ### Discovery
@@ -31,6 +30,11 @@ docker-machine create -d generic --generic-ip-address 10.10.10.1 \
     ${ROJ_SWARM_NAME}-m1
 ```
 
+:warning: After creating the swarm master you should either exit roj management container or 
+
+```
+eval $(docker-machine env --swarm ${ROJ_SWARM_NAME}-m1)
+```
 
 ### App/worker nodes
 
@@ -41,11 +45,5 @@ docker-machine create -d generic --generic-ip-address 10.10.20.10 \
     ${ROJ_MACHINE_OPTS} \
     ${ROJ_SWARM_NAME}-w10
 ```
-    
 
-Test connection
-
-```
-eval $(docker-machine env --swarm ted-m1)
-```
-
+You are now ready to deploy stacks with `docker-compose`.
