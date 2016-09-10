@@ -1,6 +1,6 @@
 # рой (roj)
 
-Nano-sized & portable environment for Docker swarms and stacks 
+Portable environments for Docker swarms and stacks
 
 ## About
 
