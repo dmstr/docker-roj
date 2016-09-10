@@ -1,59 +1,24 @@
-# roj
+# рой (roj)
 
-Docker environment
+Nano-sized & portable environment for Docker swarms and stacks 
 
-## Machine provisioning
+## About
 
-### Discovery
+Roj is based on native Docker tools to build swarms with `docker-machine` and manage stacks with `docker-compose`. 
+Since all tools are run from a docker container, the created configurations for remain portable.
 
-```
-docker-machine create -d generic --generic-ip-address 10.1.1.1 discovery
-```
+## TL;dr
 
-```
-cd discovery/consul
-eval $(docker-machine env discovery)
-docker-machine ssh discovery sudo mkdir -p /host-volume/consul/data
-docker-machine ssh discovery sudo chmod -R 777 /host-volume/consul/data
-docker-compose up -d
-```
+    docker-compose run roj
 
-Open consul web UI http://10.1.1.1:8500
+## Documentation
 
-
-### Swarm master
-
-:warning: Double-check your public IP with `ifconfig`, in the following commands the public IP is assigned to `eth1`
-
-```
-docker-machine create -d generic --generic-ip-address 10.10.10.1 \
-    --swarm-master \
-    --swarm \
-    --engine-label master=1 \
-    ${ROJ_MACHINE_OPTS} \
-    ${ROJ_SWARM_NAME}-m1
-```
-
-
-### App/worker nodes
-
-```
-docker-machine create -d generic --generic-ip-address 10.10.20.10 \
-    --swarm \
-    --engine-label app=1 \
-    ${ROJ_MACHINE_OPTS} \
-    ${ROJ_SWARM_NAME}-w10
-```
-    
-
-Test connection
-
-```
-eval $(docker-machine env --swarm ted-m1)
-```
-
+- [Build a swarm with the generic driver](docs/setup-generic-swarm.md)
 
 ## References
 
 - https://docs.docker.com/swarm/install-manual/
-- 
+
+---
+
+#### ![dmstr logo](http://t.phundament.com/dmstr-16-cropped.png) Built by [dmstr](http://diemeisterei.de)
