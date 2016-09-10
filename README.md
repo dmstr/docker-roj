@@ -10,6 +10,7 @@ Since all tools are run from a docker container, the created configurations (on 
 ## Getting started
 
 - define your desired configuration directory as a host-volume in `docker-compose.yml`
+- define environment configuration in `config/env`
 - start management container `docker-compose run roj`
 
 ## Documentation
