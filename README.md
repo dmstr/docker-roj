@@ -20,6 +20,7 @@ Since all tools are run from a docker container, the created configurations (on 
 ## References
 
 - https://docs.docker.com/swarm/install-manual/
+- https://docs.docker.com/compose/swarm
 
 ---
 
