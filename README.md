@@ -25,6 +25,7 @@ from on a host-volume, remains portable.
 - https://docs.docker.com/swarm/install-manual/
 - https://docs.docker.com/compose/swarm
 - https://github.com/docker/swarm#swarm-disambiguation
+- https://docs.docker.com/compose/production/
 
 ---
 
