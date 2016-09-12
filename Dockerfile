@@ -17,6 +17,7 @@ RUN apt-get update && \
 RUN mkdir /roj
 WORKDIR /roj
 
+ENV PATH="/roj/bin:${PATH}"
 ENV MACHINE_STORAGE_PATH /roj/config/machine
 ENV DOCKER_CONFIG /roj/config
 
