@@ -1,3 +1,9 @@
+# Building a swarm
+
+## Requirements
+
+- 3 machines accessible via SSH key
+
 ## Machine provisioning
 
 Start by entering the roj management container
