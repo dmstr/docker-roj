@@ -5,13 +5,16 @@ Portable environments for Docker swarms and stacks
 ## About
 
 Roj is based on native Docker tools to build swarms with `docker-machine` and manage stacks with `docker-compose`. 
-Since all tools are run from a docker container, the created configurations (on a host-volume) remain portable.
+Since all tools are run from a docker container the created configurations, stored under `/roj` in the container and mounted 
+from on a host-volume, remains portable.
 
 ## Getting started
 
 - define your desired configuration directory as a host-volume in `docker-compose.yml`
 - define environment configuration in `config/env`
 - start management container `docker-compose run roj`
+- use `docker-machine` to create machines and provision discovery and a swarm
+- use `docker-compose` to run stacks
 
 ## Documentation
 
@@ -21,6 +24,7 @@ Since all tools are run from a docker container, the created configurations (on 
 
 - https://docs.docker.com/swarm/install-manual/
 - https://docs.docker.com/compose/swarm
+- https://github.com/docker/swarm#swarm-disambiguation
 
 ---
 
