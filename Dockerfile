@@ -14,6 +14,10 @@ RUN apt-get update && \
 #ENV PATH /root/bin:${PATH}
 #RUN boilr init
 
+# Experimental(!) - Currently not available from DockerHub builds (TODO)
+ARG BUILD_ROJ_VERSION
+ENV ROJ_VERSION=${BUILD_ROJ_VERSION}
+
 RUN mkdir /roj
 WORKDIR /roj
 

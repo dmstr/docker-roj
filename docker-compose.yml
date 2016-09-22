@@ -1,4 +1,10 @@
-roj:
-  build: .
-  volumes:
-    - ./data/example:/roj
+version: '2'
+services:
+  roj:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        - BUILD_ROJ_VERSION=${BUILD_ROJ_VERSION}
+    volumes:
+      - ./data/example:/roj
