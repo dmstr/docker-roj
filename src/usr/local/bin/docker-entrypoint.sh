@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 cat <<'EOT'
 
@@ -21,5 +20,9 @@ if ! [ -e /roj/env ]; then
 WARNING: No env file for roj found.
 EOT
 fi
+
+# Enable "error handling" & run .bashrc
+set -e
+. ~/.bashrc
 
 exec "$@"
