@@ -12,7 +12,8 @@ cat <<'EOT'
 
 EOT
 
-# Credits: https://github.com/jwilder/nginx-proxy
+# run .bashrc
+. ~/.bashrc
 
 # Warn if the DOCKER_HOST socket does not exist
 if ! [ -e /roj/env ]; then
@@ -21,8 +22,5 @@ WARNING: No env file for roj found.
 EOT
 fi
 
-# Enable "error handling" & run .bashrc
-set -e
-. ~/.bashrc
 
 exec "$@"
