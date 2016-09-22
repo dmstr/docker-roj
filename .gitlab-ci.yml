@@ -12,6 +12,8 @@ test:
   stage: test
   script:
     - docker-compose run roj
+    - docker-compose run roj help.sh
+    - docker-compose run roj docker-machine ls
 cleanup:
   stage: cleanup
   script:
