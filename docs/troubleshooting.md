@@ -132,3 +132,48 @@ Now you'll have to restart VM to 'activate' :-(
     docker-machine ssh PAUL-m2 sudo docker restart swarm-agent-master
 
     
+
+### Pull images
+
+Error
+
+    docker-compose-redeploy 
+    No stopped containers
+    Creating wwwepisdeblue_redis_1
+    Creating wwwepisdeblue_appphp_1
+    ERROR: Error: image herzog/bernd/epis-appphp:latest not found
+    Done.
+
+Solution
+    
+    docker-compose pull
+
+
+### Example swarm master command
+
+Remove exisiting master before creating a new one
+
+    docker rm -fv swarm-agent-master
+
+Mount the certificates inside the container and start swarm
+    
+    docker run -p 3376:3376 -v /etc/docker:/etc/docker/ --name swarm-agent-master -d swarm:1.1.0 \
+        manage --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem \
+        -H tcp://0.0.0.0:3376 --strategy spread --heartbeat=11s consul://172.31.11.162:8500/sepp
+
+### High CPU load, `kswapd0`
+
+`cron.hourly`
+
+    #!/bin/sh -eu
+
+    echo 1 | sudo tee /proc/sys/vm/drop_caches
+
+### AWS was not able to validate the provided access credentials 
+
+    Error checking TLS connection: AuthFailure: AWS was not able to validate the provided access credentials
+            status code: 401, request id: 
+    docker info
+    Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+
+"fix time" in VM (`docker-machine`)
