@@ -85,3 +85,50 @@ Otherwise nginx config check, review with `nginx -T`, may fail.
     
 
     docker-machine ssh sepp-m7 sudo docker restart swarm-agent-master
+
+
+
+###  High CPU load, `kswapd0`
+
+#### add cache clear command to `crontab`
+
+Option A)
+
+    export MACHINE=swarm-x0
+
+    docker-machine scp vm_drop_caches ${MACHINE}:vm_drop_caches
+    docker-machine ssh ${MACHINE} sudo mv vm_drop_caches /etc/cron.hourly/vm_drop_caches
+    docker-machine ssh ${MACHINE} sudo chmod ugo+x /etc/cron.hourly/vm_drop_caches
+    docker-machine ssh ${MACHINE} sudo /etc/cron.hourly/vm_drop_caches
+
+Option B)
+
+    docker-machine ssh MACHINE-id0 \
+        sudo bash -c "printf '#\!/bin/sh -eu\n\necho 1 | tee /proc/sys/vm/drop_caches' > /etc/cron.hourly/vm_drop_caches && chmod ugo+x /etc/cron.hourly/vm_drop_caches"
+
+    $ sudo bash -c "printf '#\!/bin/sh -eu\n\necho 1 | tee /proc/sys/vm/drop_caches' > /etc/cron.hourly/vm_drop_caches && chmod ugo+x /etc/cron.hourly/vm_drop_caches"
+    $ chmod ugo+x /etc/cron.hourly/vm_drop_caches
+
+Apply manually
+       
+   $ echo 1 | sudo tee /proc/sys/vm/drop_caches
+
+#### drop_cache doesn't help?
+
+other "solution" from https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1518457/comments/108
+
+```
+export MACHINE=swarm-x0
+docker-machine ssh ${MACHINE} sudo touch /etc/udev/rules.d/40-vm-hotadd.rules
+```
+
+Now you'll have to restart VM to 'activate' :-(
+
+
+### Restart swarm master container
+
+:warning: Do **NOT** restart directly via `docker`
+
+    docker-machine ssh PAUL-m2 sudo docker restart swarm-agent-master
+
+    
