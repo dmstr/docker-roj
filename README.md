@@ -19,6 +19,7 @@ from on a host-volume, remain portable.
 ## Documentation
 
 - [Build a swarm with the generic driver](./docs/setup-generic-swarm.md)
+- [FAQ & troubleshooting](./docs/faq-troubleshooting.md)
 
 ## References
 

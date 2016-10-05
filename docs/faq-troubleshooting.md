@@ -1,3 +1,45 @@
+# FAQ
+
+## Commands
+
+### nginx config check
+
+:information_sign: Only set `VIRUAL_HOST` on webserver containers
+
+Run `nginx -T`, may fail.
+
+### Check `VIRTUAL_HOST`
+    
+    make rcompose DIR=auto/ CMD=config | grep VIRTUAL
+
+### Get files from a running container
+    
+    docker-compose exec php yii db/x-dump-data
+    docker cp $(docker-compose ps -q php):/app/runtime/mysql/ ./_backup
+    
+    
+### Show disk usage
+
+    docker-machine ls -q | xargs -I{} docker-machine ssh {} sudo df -h
+    
+
+    docker-machine ssh sepp-m7 sudo docker restart swarm-agent-master
+
+
+### Restart swarm master container
+
+:warning: Do **NOT** restart directly via `docker`
+
+    docker-machine ssh PAUL-m2 sudo docker restart swarm-agent-master
+
+### docker daemon restart
+
+:warning: It's very likely this action causes downtime of services
+
+    docker-machine ls -q | xargs -I {} docker-machine ssh {} sudo /etc/init.d/docker restart
+
+---
+
 # Troubleshooting
 
 ### `No such network:`
@@ -18,7 +60,7 @@ SSH connection (should work without `docker-machine` provisioning
          -o StrictHostKeyChecking=no \
          -o UserKnownHostsFile=/dev/null \
          -o IdentitiesOnly=yes \
-         vagrant@144.76.161.122
+         vagrant@10.0.0.1
 
 Swarm master provisioning
 
@@ -38,19 +80,8 @@ Swarm master provisioning
             --tlsverify --tlscacert=/etc/docker/ca.pem \
             --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem -H tcp://0.0.0.0:3376 --strategy spread \
             --heartbeat=11s \
-            --advertise 52.59.250.208:3376 \
-            consul://172.31.11.162:8500/sepp
-    
-### Only set `VIRUAL_HOST` on webserver containers
-
-Otherwise nginx config check, review with `nginx -T`, may fail.
-
-    
-### docker daemon restart
-
-:warning: It's very likely this action causes downtime of services
-
-    docker-machine ls -q | xargs -I {} docker-machine ssh {} sudo /etc/init.d/docker restart
+            --advertise 10.2.0.8:3376 \
+            consul://10.5.1.100:8500/sepp
     
     
 ### Unable to find a node that satisfies the following conditions
@@ -69,22 +100,7 @@ Otherwise nginx config check, review with `nginx -T`, may fail.
     docker-compose pull
     
     
-### Check `VIRTUAL_HOST`
     
-    make rcompose DIR=auto/ CMD=config | grep VIRTUAL
-    
-### Get files from a running container
-    
-    docker-compose exec php yii db/x-dump-data
-    docker cp $(docker-compose ps -q php):/app/runtime/mysql/ ./_backup
-    
-    
-### Show disk usage
-
-    docker-machine ls -q | xargs -I{} docker-machine ssh {} sudo df -h
-    
-
-    docker-machine ssh sepp-m7 sudo docker restart swarm-agent-master
 
 
 
@@ -125,22 +141,14 @@ docker-machine ssh ${MACHINE} sudo touch /etc/udev/rules.d/40-vm-hotadd.rules
 Now you'll have to restart VM to 'activate' :-(
 
 
-### Restart swarm master container
-
-:warning: Do **NOT** restart directly via `docker`
-
-    docker-machine ssh PAUL-m2 sudo docker restart swarm-agent-master
-
-    
-
 ### Pull images
 
 Error
 
     docker-compose-redeploy 
     No stopped containers
-    Creating wwwepisdeblue_redis_1
-    Creating wwwepisdeblue_appphp_1
+    Creating myapp_redis_1
+    Creating myapp_appphp_1
     ERROR: Error: image herzog/bernd/epis-appphp:latest not found
     Done.
 
@@ -159,7 +167,7 @@ Mount the certificates inside the container and start swarm
     
     docker run -p 3376:3376 -v /etc/docker:/etc/docker/ --name swarm-agent-master -d swarm:1.1.0 \
         manage --tlsverify --tlscacert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem \
-        -H tcp://0.0.0.0:3376 --strategy spread --heartbeat=11s consul://172.31.11.162:8500/sepp
+        -H tcp://0.0.0.0:3376 --strategy spread --heartbeat=11s consul://10.5.1.100:8500/sepp
 
 ### High CPU load, `kswapd0`
 
