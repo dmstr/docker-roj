@@ -17,7 +17,7 @@ from on a host-volume, remain portable.
 
 - define your desired configuration directory as a host-volume in `docker-compose.yml`
 - define environment configuration in `config/env`
-- start management container `docker-compose run roj`
+- start management container `docker-compose run --rm roj`
 - use `$ docker-machine` to create machines and provision discovery and a swarm
 - use `$ docker-compose` to run stacks
 
