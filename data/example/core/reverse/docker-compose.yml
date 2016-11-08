@@ -1,0 +1,30 @@
+#
+# Reverse proxy
+#
+version: '2'
+services:
+  proxy:
+    command: "sh -c 'echo \"server_tokens off;\nclient_max_body_size 512m;\" > /etc/nginx/conf.d/my_proxy.conf; forego start -r'"
+    image: jwilder/nginx-proxy:0.4.0
+    ports:
+      - "80:80"
+      - '443:443'
+    restart: always
+    environment:
+      - DOCKER_HOST=tcp://${ROJ_MASTER_PUBLIC_IP}:3376
+    volumes:
+      # Certs from master need to be copied to swarm proxy nodes
+      - /tmp/docker-certs:/tmp/docker-certs
+      #- /tmp/nginx.tmpl:/app/nginx.tmpl
+      #- /tmp/nginx/htpasswd:/etc/nginx/htpasswd
+      #- /tmp/nginx/vhost.d:/etc/nginx/vhost.d
+      #- /tmp/nginx/certs:/etc/nginx/certs
+      #- /tmp/nginx/error-pages:/usr/share/nginx/error-pages
+    env_file: proxy.env
+#networks:
+#  default:
+#    driver: overlay
+#    ipam:
+#      config:
+#        - subnet: 192.168.168.0/20
+#          ip_range: 192.168.168.0/22
