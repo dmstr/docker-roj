@@ -13,7 +13,7 @@ test:
   stage: test
   script:
     - docker-compose run --rm roj
-    - docker-compose run --rm roj docker version
+    # TODO: add test for docker version
     - docker-compose run --rm roj help.sh
     - docker-compose run --rm roj docker-machine ls
 cleanup:
