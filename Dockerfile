@@ -22,7 +22,7 @@ ENV MACHINE_STORAGE_PATH /roj/config/machine
 ENV DOCKER_CONFIG /roj/config
 
 RUN rm /opt/local/bin/docker
-RUN ln -s /opt/local/bin/docker-1.12.1-experimental /opt/local/bin/docker
+RUN ln -s /opt/local/bin/docker-1.12.3 /opt/local/bin/docker
 
 COPY ./src /
 

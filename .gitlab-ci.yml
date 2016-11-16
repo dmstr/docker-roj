@@ -12,9 +12,10 @@ build:
 test:
   stage: test
   script:
-    - docker-compose run roj
-    - docker-compose run roj help.sh
-    - docker-compose run roj docker-machine ls
+    - docker-compose run --rm roj
+    - docker-compose run --rm roj docker version
+    - docker-compose run --rm roj help.sh
+    - docker-compose run --rm roj docker-machine ls
 cleanup:
   stage: cleanup
   script:
