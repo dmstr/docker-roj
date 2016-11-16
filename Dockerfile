@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:5.0.1
+FROM schmunk42/docker-toolbox:5.0.2
 
 # Install system packages
 ENV TERM linux
