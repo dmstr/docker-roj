@@ -10,9 +10,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install boilr
-#RUN curl -sSL https://raw.githubusercontent.com/tmrts/boilr/master/install | bash
-#ENV PATH /root/bin:${PATH}
-#RUN boilr init
+RUN curl -sSL https://raw.githubusercontent.com/tmrts/boilr/master/install | bash
+ENV PATH /root/bin:${PATH}
+RUN boilr init
 
 RUN mkdir /roj
 WORKDIR /roj
