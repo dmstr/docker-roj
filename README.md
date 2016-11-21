@@ -26,6 +26,16 @@ from on a host-volume, remain portable.
 - [Build a swarm with the generic driver](./docs/setup-generic-swarm.md)
 - [FAQ & troubleshooting](./docs/faq-troubleshooting.md)
 
+## Screenshots
+
+### Startup
+
+![roj-startup](https://raw.githubusercontent.com/dmstr/gh-media/master/dmstr/docker-roj/roj-startup.png)
+
+### Green-blue redeployment
+
+![roj-redeploy](https://raw.githubusercontent.com/dmstr/gh-media/master/dmstr/docker-roj/roj-redeploy.png)
+
 ## References
 
 - https://docs.docker.com/swarm/install-manual/
