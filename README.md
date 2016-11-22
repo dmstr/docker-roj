@@ -59,6 +59,16 @@ Use `$ docker-compose` to run stacks
 - [Build a swarm on AWS](./docs/setup-aws-swarm.md)
 - [FAQ & troubleshooting](./docs/faq-troubleshooting.md)
 
+## Screenshots
+
+### Startup
+
+![roj-startup](https://raw.githubusercontent.com/dmstr/gh-media/master/dmstr/docker-roj/roj-startup.png)
+
+### Green-blue redeployment
+
+![roj-redeploy](https://raw.githubusercontent.com/dmstr/gh-media/master/dmstr/docker-roj/roj-redeploy.png)
+
 ## References
 
 - https://docs.docker.com/swarm/install-manual/
