@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Redeployment script for docker-compose
+# Green-blue redeployment script for docker-compose
 #
 # Requirements: docker-compose.yml in ${STACK_DIR} (defaults to currenty working directory)
 #

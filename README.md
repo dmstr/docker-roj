@@ -10,20 +10,53 @@ from on a host-volume, remain portable.
 
 ## Requirements
 
+On your host
+
+- docker
+- docker-compose
+
+For remote machine access
+
 - access to hosts/VMs via SSH keys or 
 - credentials to create machines in the cloud (see `docker-machine` drivers)
 
 ## Getting started
 
-- define your desired configuration directory as a host-volume (e.g. `./data/example:/roj`) in `docker-compose.yml`
-- define environment configuration in `config/env`
-- start management container `docker-compose run --rm roj`
-- use `$ docker-machine` to create machines and provision discovery and a swarm
-- use `$ docker-compose` to run stacks
+Create a new directory for your roj-stacks project and add a `docker-compose.yml` with the following contents
+
+    roj:
+      image: dmstr/roj:0.2.5-beta1
+      working_dir: /roj
+      volumes:
+        - ./roj:/roj
+
+> By default swarm & stack configuration files will be placed into `./roj`, change your desired configuration directory by updating the host-volume path on your machine.
+
+Run the roj management container
+
+    docker-compose run --rm roj
+
+And create files from a *boilr*-template
+
+    $ boilr template download schmunk42/roj-stacks-template stacks    
+    $ boilr template use stacks .
+
+You can always update environment configuration in `config/env` if needed, a management container restart is required after changing ENV variables.
+
+> :bulb: Check out the [docs section](docs/) for specific host and/or provider requirements.
+
+## Usage
+
+From the management container...
+
+Use `$ docker-machine` to create machines and provision discovery and a swarm.
+
+Use `$ docker-compose` to run stacks
 
 ## Documentation
 
 - [Build a swarm with the generic driver](./docs/setup-generic-swarm.md)
+- [Build a swarm on AWS](./docs/setup-aws-swarm.md)
 - [FAQ & troubleshooting](./docs/faq-troubleshooting.md)
 
 ## References
