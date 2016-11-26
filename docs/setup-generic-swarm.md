@@ -9,7 +9,7 @@
 Start by entering the roj management container
 
 ```
-docker-compose run roj
+docker-compose run --rm roj
 ```
 
 ### Discovery
