@@ -12,8 +12,8 @@ from on a host-volume, remain portable.
 
 On your host
 
-- docker
-- docker-compose
+- docker `>=1.9`
+- docker-compose (optional) `>=1.8`
 
 For remote machine access
 
