@@ -1,13 +1,10 @@
-FROM schmunk42/docker-toolbox:5.0.3
+FROM schmunk42/docker-toolbox:6.0.0-beta1
 
 # Install system packages
 ENV TERM linux
-RUN apt-get update && \
-    apt-get install -y \
+RUN apk add --no-cache \
         git \
-        expect && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        expect
 
 
 # Install boilr
