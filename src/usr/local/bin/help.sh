@@ -8,6 +8,7 @@ Commands:
   docker-machine
   docker
   docker-compose
+  boilr
 
 Examples:
   docker-machine -h         Show machine help
@@ -18,5 +19,6 @@ Examples:
   docker ps -a              Show all containers
   docker -h                 Show docker-compose help
   docker-compose ps         Show running container from current stack directory
+  boilr template list       Show available templates
 
 EOT

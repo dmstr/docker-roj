@@ -13,9 +13,10 @@ test:
   stage: test
   script:
     - docker-compose run --rm roj
-    # TODO: add test for docker version
-    - docker-compose run --rm roj help.sh
+    - docker-compose run --rm roj pwd
+    - docker-compose run --rm roj docker version
     - docker-compose run --rm roj docker-machine ls
+    - docker-compose run --rm roj help.sh
     - docker-compose run --rm roj boilr
 cleanup:
   stage: cleanup
