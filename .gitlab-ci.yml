@@ -1,17 +1,15 @@
 stages:
-  - build
   - test
-  - cleanup
 before_script:
   - export COMPOSE_PROJECT_NAME=buildpipeline${CI_PIPELINE_ID}
   - export BUILD_ROJ_VERSION=$(git describe --always --long --dirty)
-build:
-  stage: build
-  script:
-    - docker-compose build
+after_script:
+  - export COMPOSE_PROJECT_NAME=buildpipeline${CI_PIPELINE_ID}
+  - docker-compose down -v
 test:
   stage: test
   script:
+    - docker-compose build
     - docker-compose run --rm roj
     - docker-compose run --rm roj pwd
     - docker-compose run --rm roj docker-machine ls
@@ -19,8 +17,4 @@ test:
     - docker-compose run --rm roj docker version || exit 0
     - docker-compose run --rm roj help.sh
     - docker-compose run --rm roj boilr
-cleanup:
-  stage: cleanup
-  script:
-    - docker-compose down -v --remove-orphans
-  when: always
+    - docker-compose run --rm roj make

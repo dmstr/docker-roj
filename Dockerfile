@@ -1,11 +1,12 @@
-FROM schmunk42/docker-toolbox:6.0.0-beta1
+FROM schmunk42/docker-toolbox:6.0.0-beta2
 
 # Install system packages
 ENV TERM linux
-RUN apk add --no-cache \
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
         git \
-        expect
-
+        expect \
+ && apt-get clean
 
 # Install boilr
 RUN curl -sSL https://raw.githubusercontent.com/tmrts/boilr/master/install | bash
