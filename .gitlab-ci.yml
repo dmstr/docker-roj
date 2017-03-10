@@ -16,5 +16,7 @@ test:
     # do not fail, since there's no active docker connection in testing
     - docker-compose run --rm roj docker version || exit 0
     - docker-compose run --rm roj help.sh
-    - docker-compose run --rm roj boilr
+    - docker-compose run --rm roj boilr template
+    #- docker-compose run --rm roj boilr version
+    - docker-compose run --rm roj ctop -v
     - docker-compose run --rm roj make
