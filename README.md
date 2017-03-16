@@ -38,6 +38,16 @@ Run the roj management container
 
     docker-compose run --rm roj
 
+## Usage
+
+From the management container...
+
+Use `$ docker-machine` to create machines and provision discovery and a swarm.
+
+Use `$ docker-compose` to run stacks
+
+## Templates (experimental)
+
 And create files from a *boilr*-template
 
     $ boilr template download schmunk42/roj-stacks-template stacks    
@@ -48,14 +58,6 @@ You can always update environment configuration in `config/env` if needed, a man
 TODO: Create SSH key
 
 > :bulb: Check out the [docs section](docs/) for specific host and/or provider requirements.
-
-## Usage
-
-From the management container...
-
-Use `$ docker-machine` to create machines and provision discovery and a swarm.
-
-Use `$ docker-compose` to run stacks
 
 ## Documentation
 
