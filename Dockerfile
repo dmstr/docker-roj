@@ -6,6 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
         git \
         expect \
+        awscli \
  && apt-get clean
 
 # Install boilr

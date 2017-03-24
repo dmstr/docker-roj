@@ -20,3 +20,4 @@ test:
     #- docker-compose run --rm roj boilr version
     - docker-compose run --rm roj ctop -v
     - docker-compose run --rm roj make
+    - docker-compose run --rm roj aws --version
