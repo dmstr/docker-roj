@@ -27,7 +27,7 @@ For remote machine access
 Create a new directory for your roj-stacks project and add a `docker-compose.yml` with the following contents
 
     roj:
-      image: dmstr/roj:0.3.0-beta1
+      image: dmstr/roj:0.3.0
       working_dir: /roj
       volumes:
         - ./roj:/roj
