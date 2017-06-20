@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:6.0.0-beta2
+FROM schmunk42/docker-toolbox:6.1.0-rc1
 
 # Install system packages
 ENV TERM linux
