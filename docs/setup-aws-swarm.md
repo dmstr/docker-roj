@@ -24,6 +24,8 @@ Test consul UI in browser.
 
 :warning: Double check cluster-advertise interface
 
+AWS is using private IPs (sec. group)
+
 Setup master
 
     docker-machine create \
@@ -31,8 +33,8 @@ Setup master
         --swarm-master \
         --swarm \
         --engine-label master=1 \
-        --swarm-discovery consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
-        --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+        --swarm-discovery consul://${ROJ_DISCOVERY_PRIVATE_IP}:8500/${ROJ_SWARM_NAME} \
+        --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PRIVATE_IP}:8500/${ROJ_SWARM_NAME} \
         --engine-opt=cluster-advertise=eth0:2376 \
         ${ROJ_SWARM_NAME}-m1
 
@@ -43,7 +45,7 @@ Setup app (worker) node
         -d amazonec2 \
         --swarm \
         --engine-label app=1 \
-        --swarm-discovery consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
-        --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PUBLIC_IP}:8500/${ROJ_SWARM_NAME} \
+        --swarm-discovery consul://${ROJ_DISCOVERY_PRIVATE_IP}:8500/${ROJ_SWARM_NAME} \
+        --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PRIVATE_IP}:8500/${ROJ_SWARM_NAME} \
         --engine-opt=cluster-advertise=eth0:2376 \
         ${ROJ_SWARM_NAME}-w10

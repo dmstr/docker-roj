@@ -4,11 +4,14 @@ Portable environments for Docker swarms and Compose applications
 
 ## About
 
-Roj is based on native Docker tools to build swarms with `docker-machine` and manage stacks with `docker-compose`. 
-Since all tools are run from a docker container the created configurations, stored under `/roj` in the container and mounted 
+Roj is a Docker management environment in a container build on native tools.
+It is meant to provision hosts and configure swarms with `docker-machine` and manage stacks with `docker-compose` though a
+ Docker client.
+
+Since all tools are run from a container, the created configurations, stored under `/roj/config` in the container and mounted 
 from on a host-volume, remain portable.
 
-You can use portainer as 
+You can use [portainer](http://portainer.io/) as Web UI to your Docker endpoints.
 
 ## Requirements
 
@@ -27,10 +30,10 @@ For remote machine access
 Create a new directory for your roj-stacks project and add a `docker-compose.yml` with the following contents
 
     roj:
-      image: dmstr/roj:0.3.0-beta1
+      image: dmstr/roj:0.3.0
       working_dir: /roj
       volumes:
-        - ./roj:/roj
+        - ./:/roj
 
 > By default swarm & stack configuration files will be placed into `./roj`, change your desired configuration directory by updating the host-volume path on your machine.
 
@@ -41,6 +44,8 @@ Run the roj management container
 ## Usage
 
 From the management container...
+
+Use `$ boilr` to create stacks from templates
 
 Use `$ docker-machine` to create machines and provision discovery and a swarm.
 
