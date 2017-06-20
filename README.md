@@ -41,6 +41,10 @@ Run the roj management container
 
     docker-compose run --rm roj
 
+## Configuration
+
+Environment variables for the management container can be set in `config/env`. By default Docker configurations are also stored in this custom config directory. You may set various default for, ie. `docker-machine` or `docker-compose` here.
+
 ## Usage
 
 From the management container...
