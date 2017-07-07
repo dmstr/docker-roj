@@ -6,7 +6,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
         git \
         expect \
-        awscli \
+        less \
  && apt-get clean
 
 # Install boilr
@@ -18,6 +18,9 @@ RUN boilr init
 RUN curl -L https://github.com/bcicen/ctop/releases/download/v0.4.1/ctop-0.4.1-linux-amd64 -o ctop
 RUN mv ctop /usr/local/bin/
 RUN chmod +x /usr/local/bin/ctop
+
+# install current version of awscli, deb pkg version is way to old
+RUN pip install --upgrade awscli
 
 # Add scripts and configuration
 ENV PATH="/roj/bin:${PATH}"
