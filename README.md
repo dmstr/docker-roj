@@ -13,6 +13,8 @@ from on a host-volume, remain portable.
 
 You can use [portainer](http://portainer.io/) as Web UI to your Docker endpoints.
 
+Supported cloud platforms: **AWS**, **Google Cloud**.
+
 ## Requirements
 
 On your host
