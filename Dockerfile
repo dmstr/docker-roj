@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:6.1.1
+FROM schmunk42/docker-toolbox:7.0.0-beta1
 
 # Create an environment variable for the correct distribution
 # Add the Cloud SDK distribution URI as a package source
