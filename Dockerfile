@@ -1,5 +1,12 @@
 FROM schmunk42/docker-toolbox:7.0.0-beta1
 
+# Install gnupg2
+ENV TERM linux
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+        gnupg2 \
+ && apt-get clean
+
 # Create an environment variable for the correct distribution
 # Add the Cloud SDK distribution URI as a package source
 RUN export CLOUD_SDK_REPO="cloud-sdk-jessie" \
