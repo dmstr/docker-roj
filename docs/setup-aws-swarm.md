@@ -3,19 +3,22 @@ boilr template use stacks .
 - Allocate Elastic IP
 - Setup security group
 
-
-    docker-machine create \
-        -d amazonec2 \
-        --engine-label discovery=1 \
-        discovery
+```
+docker-machine create \
+    -d amazonec2 \
+    --engine-label discovery=1 \
+    discovery
+```
 
 Setup discovery        
-        
-    cd discovery/consul
-    eval $(docker-machine env discovery)
-    docker-machine ssh discovery sudo sh -c 'mkdir -p /host-volume/consul/data && chmod -R 777 /host-volume/consul/data'
-    docker-compose up -d        
-    
+
+```
+cd discovery/consul
+eval $(docker-machine env discovery)
+docker-machine ssh discovery sudo sh -c 'mkdir -p /host-volume/consul/data && chmod -R 777 /host-volume/consul/data'
+docker-compose up -d        
+```
+
 :bulb: You can use a `.env` file for *Docker Compose* to point to the discovery VM by default `docker-machine env discovery > .env`
 
 :warning: Setup ACLs or another access control for Consul.
@@ -37,7 +40,6 @@ Setup master
         --engine-opt=cluster-store=consul://${ROJ_DISCOVERY_PRIVATE_IP}:8500/${ROJ_SWARM_NAME} \
         --engine-opt=cluster-advertise=eth0:2376 \
         ${ROJ_SWARM_NAME}-m1
-
 
 Setup app (worker) node        
         
