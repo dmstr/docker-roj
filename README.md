@@ -53,9 +53,14 @@ From the management container...
 
 Use `$ boilr` to create stacks from templates
 
+Use `$ docker` to access the Docker daemon
+
 Use `$ docker-machine` to create machines and provision discovery and a swarm.
 
 Use `$ docker-compose` to run stacks
+
+Use `$ ctop` for detailed container stats
+
 
 ## Templates (experimental)
 

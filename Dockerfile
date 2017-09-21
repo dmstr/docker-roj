@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:7.0.0-beta1
+FROM schmunk42/docker-toolbox:7.0.0-rc1
 
 # Install gnupg2
 ENV TERM linux
@@ -32,7 +32,7 @@ ENV PATH /root/bin:${PATH}
 RUN boilr init
 
 # Install ctop
-RUN curl -L https://github.com/bcicen/ctop/releases/download/v0.4.1/ctop-0.4.1-linux-amd64 -o ctop
+RUN curl -L https://github.com/bcicen/ctop/releases/download/v0.6.1/ctop-0.6.1-linux-amd64 -o ctop
 RUN mv ctop /usr/local/bin/
 RUN chmod +x /usr/local/bin/ctop
 
