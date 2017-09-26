@@ -24,6 +24,7 @@ RUN apt-get update \
         awscli \
         google-cloud-sdk \
         less \
+        watch \
  && apt-get clean
 
 # Install boilr
