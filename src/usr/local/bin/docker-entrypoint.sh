@@ -34,9 +34,16 @@ docker-machine --version
 docker --version
 docker-compose --version
 
+# ensure var is not empty or whitespace
+ROJ_MACHINE_DEFAULT=$(echo ${ROJ_MACHINE_DEFAULT})
+if [ -z "${ROJ_MACHINE_DEFAULT}" ]; then
+    echo "ROJ_MACHINE_DEFAULT is not set, use ROJ_SWARM_NAME, ROJ_SEPARATOR, ROJ_MASTER_ID"
+    ROJ_MACHINE_DEFAULT="${ROJ_SWARM_NAME}${ROJ_SEPARATOR}${ROJ_MASTER_ID}"
+fi
+
 # Configure Docker endpoint
-echo "Preparing Docker environment for '${ROJ_SWARM_NAME}${ROJ_SEPARATOR}${ROJ_MASTER_ID}'..."
-eval $(docker-machine env --shell bash ${MACHINE_RC_OPTS} ${ROJ_SWARM_NAME}${ROJ_SEPARATOR}${ROJ_MASTER_ID})
+echo "Preparing Docker environment for '${ROJ_MACHINE_DEFAULT}'..."
+eval $(docker-machine env --shell bash ${MACHINE_RC_OPTS} ${ROJ_MACHINE_DEFAULT})
 
 # Show info
 docker info

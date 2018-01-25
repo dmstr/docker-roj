@@ -5,6 +5,11 @@ ROJ_MASTER_ID=m1
 ROJ_SEPARATOR=-
 ROJ_SWARM_NODE=*
 
+# - if set, this will be used as docker-machine name to initialise
+#   docker env in /src/usr/local/bin/docker-entrypoint.sh
+# - if empty docker-machine name will be build from ${ROJ_SWARM_NAME}${ROJ_SEPARATOR}${ROJ_MASTER_ID}
+ROJ_MACHINE_DEFAULT=
+
 SHELL=bash
 
 MACHINE_DOCKER_INSTALL_URL=https://experimental.docker.com
