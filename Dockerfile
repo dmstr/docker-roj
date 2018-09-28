@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:7.0.0-rc1
+FROM schmunk42/docker-toolbox:8.0.0-rc1
 
 # Install gnupg2
 ENV TERM linux
@@ -39,6 +39,8 @@ RUN mv ctop /usr/local/bin/
 RUN chmod +x /usr/local/bin/ctop
 
 # install current version of awscli, deb pkg version is way to old
+RUN curl -o get-pip.py https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py
 RUN pip install --upgrade awscli
 
 # Add scripts and configuration
