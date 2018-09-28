@@ -2,7 +2,7 @@ stages:
   - test
 before_script:
   - export COMPOSE_PROJECT_NAME=buildpipeline${CI_PIPELINE_ID}
-  - export BUILD_ROJ_VERSION=$(git describe --always --long --dirty)
+  - export BUILD_ROJ_VERSION=$(qq)
 after_script:
   - export COMPOSE_PROJECT_NAME=buildpipeline${CI_PIPELINE_ID}
   - docker-compose down -v
