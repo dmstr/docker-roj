@@ -38,10 +38,15 @@ RUN curl -L https://github.com/bcicen/ctop/releases/download/v0.6.1/ctop-0.6.1-l
 RUN mv ctop /usr/local/bin/
 RUN chmod +x /usr/local/bin/ctop
 
-# install current version of awscli, deb pkg version is way to old
+# install current version of awscli (deb pkg version is way too old)
 RUN curl -o get-pip.py https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py
 RUN pip install --upgrade awscli
+
+# Install jsonfui
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+ && apt-get install nodejs \
+ && npm install -g jsonfui
 
 # Add scripts and configuration
 ENV PATH="/roj/bin:${PATH}"
