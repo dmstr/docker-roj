@@ -28,6 +28,7 @@ fi
 # Import env file
 echo "Importing ENV configuration..."
 export $(cat /roj/config/env | grep -v ^# | xargs)
+export PATH=${ROJ_SCRIPTS_PATH}:$PATH
 
 # Show versions
 docker-machine --version

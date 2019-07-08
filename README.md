@@ -47,6 +47,8 @@ Run the roj management container
 
 Environment variables for the management container can be set in `config/env`. By default Docker configurations are also stored in this custom config directory. You may set various default for, ie. `docker-machine` or `docker-compose` here.
 
+To add an additonal directory to `PATH` use `ROJ_SCRIPTS_PATH`.
+
 ## Usage
 
 From the management container...
