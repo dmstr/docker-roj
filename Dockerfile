@@ -1,4 +1,4 @@
-FROM schmunk42/docker-toolbox:9.0.0-rc1
+FROM schmunk42/docker-toolbox:9.0.0
 
 # Install gnupg2
 ENV TERM linux
