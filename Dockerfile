@@ -28,6 +28,10 @@ RUN apt-get update \
         watch \
  && apt-get clean
 
+ENV COMPOSE_VERSION_LEGACY=1.16.1
+RUN curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION_LEGACY}/docker-compose-`uname -s`-`uname -m` > /opt/local/bin/docker-compose-${COMPOSE_VERSION_LEGACY} && \
+    chmod +x /opt/local/bin/docker-compose-${COMPOSE_VERSION_LEGACY}
+
 # Install boilr
 RUN curl -sSL https://raw.githubusercontent.com/tmrts/boilr/master/install | bash
 ENV PATH /root/bin:${PATH}
